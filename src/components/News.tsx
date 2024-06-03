@@ -1,6 +1,6 @@
+import moment from "moment";
 import useFetch from "../hooks/useFetch";
-import humango from "humango";
-import { ITEM, USER } from "../utilties/api";
+import { ITEM } from "../utilties/api";
 
 const Loading = () => {
   return (
@@ -24,7 +24,7 @@ const Loading = () => {
 const News = (props: { data: number }) => {
   const { isLoading, data } = useFetch(ITEM(props.data));
 
-  if(isLoading) return <Loading />
+  if (isLoading) return <Loading />
 
   return (
     <article className="mt-[10px] py-[10px] px-[20px] bg-white rounded-lg">
@@ -38,7 +38,7 @@ const News = (props: { data: number }) => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <small>{humango(data.time*1000)}</small>
+        <small>{moment(data.time * 1000).fromNow()}</small>
       </p>
     </article>
   )
